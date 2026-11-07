@@ -1,0 +1,79 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="img/favicon.png"><link rel="apple-touch-icon" href="img/logo.png">
+<title>FIFTEEN · Invito</title>
+<!-- preview in WhatsApp, Instagram, Messages... (crawlers do not run scripts: one text for every language) -->
+<meta property="og:title" content="FIFTEEN · Gioca con me! / Play with me!">
+<meta property="og:description" content="Invito a FIFTEEN, il gioco di carte: arriva esattamente a 15. / Invitation to FIFTEEN, the card game: reach exactly 15.">
+<meta property="og:image" content="https://rutakoulab.github.io/fifteen/img/logo.png">
+<meta property="og:type" content="website"><meta name="twitter:card" content="summary">
+<style>
+:root{--bg:#f6e9cc;--card:#fff8e7;--ink:#1d1a1f;--red:#e5323c;--muted:#6b6260;--yellow:#f7b500;--blue:#2563eb}
+@media (prefers-color-scheme:dark){:root{--bg:#1d1a1f;--card:#2a2630;--ink:#f6e9cc;--red:#ff6b6b;--muted:#b9b0a8}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 16px 60px;text-align:center}
+header img{width:110px;height:110px;border-radius:28px;box-shadow:0 5px 0 var(--ink)}
+h1{color:var(--red);font-size:28px;margin:18px 0 6px}
+section{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:22px 18px;margin:20px 0;box-shadow:6px 7px 0 var(--ink)}
+.code{font:900 44px/1.1 system-ui,sans-serif;letter-spacing:6px;margin:6px 0 4px;word-break:break-all}
+.btn{display:block;margin:14px 0 0;padding:16px;border:3px solid #1d1a1f;border-radius:18px;font-weight:800;font-size:20px;text-decoration:none;color:#1d1a1f;background:var(--yellow);box-shadow:0 6px 0 #1d1a1f;cursor:pointer}
+.btn.store{background:#fff8e7;font-size:17px}
+button.btn{width:100%;font-family:inherit}
+.muted{color:var(--muted);font-size:15px}
+</style></head><body><main>
+<header><img src="img/logo.png" alt="FIFTEEN"></header>
+<h1 id="title">Ti hanno invitato a FIFTEEN</h1>
+<section>
+  <div id="what" class="muted">Codice amico</div>
+  <div id="code" class="code">——</div>
+  <a id="open" class="btn" href="#">Apri FIFTEEN</a>
+  <button id="copy" class="btn store" type="button">Copia il codice</button>
+  <p id="how" class="muted"></p>
+</section>
+<section>
+  <p id="get">Non hai ancora il gioco? Scaricalo, poi apri di nuovo questo link.</p>
+  <a class="btn store" id="ios" href="https://apps.apple.com/app/id6831655658">App Store · iPhone e iPad</a>
+  <a class="btn store" id="android" href="https://play.google.com/store/apps/details?id=com.fifteen.cardgame">Google Play · Android</a>
+</section>
+<p class="muted"><a href="privacy.html" style="color:var(--red)">Privacy</a></p>
+</main>
+<script>
+// ?f=CODE: a friend code; ?t=CODE: a table among friends. The game opens with fifteen://f/CODE or fifteen://t/CODE
+// (Assets/Scripts/App/Links.cs in the game's repository).
+(function(){
+  var T={
+    it:{title:"Ti hanno invitato a FIFTEEN",f:"Codice amico",t:"Codice del tavolo",open:"Apri FIFTEEN",copy:"Copia il codice",copied:"Copiato!",
+        howf:"Nel gioco: Amici → Aggiungi un amico, scrivi questo codice.",howt:"Nel gioco: Amici → Codice del tavolo, scrivi questo codice.",
+        get:"Non hai ancora il gioco? Scaricalo, poi apri di nuovo questo link.",bad:"Link non valido."},
+    en:{title:"You're invited to FIFTEEN",f:"Friend code",t:"Table code",open:"Open FIFTEEN",copy:"Copy the code",copied:"Copied!",
+        howf:"In the game: Friends → Add a friend, type this code.",howt:"In the game: Friends → Table code, type this code.",
+        get:"Don't have the game yet? Get it, then open this link again.",bad:"Invalid link."},
+    es:{title:"Te han invitado a FIFTEEN",f:"Código de amigo",t:"Código de la mesa",open:"Abrir FIFTEEN",copy:"Copiar el código",copied:"¡Copiado!",
+        howf:"En el juego: Amigos → Agregar un amigo, escribe este código.",howt:"En el juego: Amigos → Código de la mesa, escribe este código.",
+        get:"¿Aún no tienes el juego? Descárgalo y vuelve a abrir este enlace.",bad:"Enlace no válido."},
+    fr:{title:"Tu es invité à FIFTEEN",f:"Code ami",t:"Code de la table",open:"Ouvrir FIFTEEN",copy:"Copier le code",copied:"Copié !",
+        howf:"Dans le jeu : Amis → Ajouter un ami, tape ce code.",howt:"Dans le jeu : Amis → Code de la table, tape ce code.",
+        get:"Tu n'as pas encore le jeu ? Télécharge-le, puis rouvre ce lien.",bad:"Lien non valide."},
+    de:{title:"Du bist zu FIFTEEN eingeladen",f:"Freundescode",t:"Tischcode",open:"FIFTEEN öffnen",copy:"Code kopieren",copied:"Kopiert!",
+        howf:"Im Spiel: Freunde → Freund hinzufügen, diesen Code eingeben.",howt:"Im Spiel: Freunde → Tischcode, diesen Code eingeben.",
+        get:"Du hast das Spiel noch nicht? Lade es herunter und öffne den Link erneut.",bad:"Ungültiger Link."},
+    zh:{title:"你被邀请玩 FIFTEEN",f:"好友码",t:"牌桌代码",open:"打开 FIFTEEN",copy:"复制代码",copied:"已复制！",
+        howf:"在游戏中：好友 → 添加好友，输入此代码。",howt:"在游戏中：好友 → 牌桌代码，输入此代码。",
+        get:"还没有游戏？下载后再次打开此链接。",bad:"链接无效。"}
+  };
+  var lang=(navigator.language||"en").slice(0,2).toLowerCase(); var L=T[lang]||T.en;
+  document.documentElement.lang=T[lang]?lang:"en";
+  var q=new URLSearchParams(location.search), kind=q.get("t")?"t":"f", code=(q.get(kind)||"").toUpperCase();
+  var ok=/^[A-Z0-9]{4,8}$/.test(code);
+  function $(id){return document.getElementById(id)}
+  $("title").textContent=L.title; $("what").textContent=L[kind]; $("open").textContent=L.open; $("copy").textContent=L.copy; $("get").textContent=L.get;
+  if(!ok){$("code").textContent=L.bad;$("open").style.display=$("copy").style.display="none";return}
+  $("code").textContent=code; $("how").textContent=kind=="t"?L.howt:L.howf;
+  var app="fifteen://"+kind+"/"+code, ua=navigator.userAgent;
+  var android=/Android/i.test(ua), apple=/iPhone|iPad|iPod|Macintosh/i.test(ua)&&"ontouchend" in document;
+  // Android: an intent link opens the game, or Google Play when it is not installed
+  $("open").href=android?"intent://"+kind+"/"+code+"#Intent;scheme=fifteen;package=com.fifteen.cardgame;S.browser_fallback_url="+encodeURIComponent($("android").href)+";end":app;
+  if(android)$("ios").style.display="none"; if(apple)$("android").style.display="none";
+  $("copy").onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(code):Promise.reject()).then(function(){b.textContent=L.copied},function(){b.textContent=code})};
+})();
+</script>
+</body></html>
